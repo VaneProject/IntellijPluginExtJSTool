@@ -1,0 +1,32 @@
+<idea-plugin>
+    <id>org.vane</id>
+    <name>ExtJSTool</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="ToramPersesTitan@gmail.com" url="https://vaneproject.github.io/">Project Vane</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description>ExtJS Tool Simple - create file, viewmodel, etc</description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <defaultTemplatePropertiesProvider implementation="org.vane.TemplatePackagePropertyProvider"/>
+    </extensions>
+
+    <actions>
+        <action id="Create.ExtJS"
+                class="org.vane.CreateExtJSFileAction"
+                icon="AllIcons.FileTypes.JavaScript">
+            <add-to-group group-id="NewGroup"/>
+        </action>
+    </actions>
+
+</idea-plugin>

@@ -1,0 +1,29 @@
+Ext.define('Ehm.${PATH}.${NAME}', {
+    extend: 'Ext.app.ViewModel',
+    alias: 'viewmodel.${ALIAS}',
+
+    stores: {
+        [TODO]: {
+            autoLoad: true,
+            pageSize: 30,
+            config: {
+                proxy: {
+                    type: 'ajax',
+                    url: '',
+                    reader: {
+                        type: 'json',
+                        rootProperty: '',
+                        totalProperty: ''
+                    },
+                    extraParams: {
+
+                    }
+                }
+            },
+
+            fields: [
+
+            ]
+        }
+    }
+});

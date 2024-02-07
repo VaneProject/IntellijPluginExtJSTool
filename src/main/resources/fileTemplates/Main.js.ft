@@ -1,0 +1,24 @@
+Ext.define('Ehm.${PATH}.${NAME}', {
+    extend: 'Ext.panel.Panel',
+    alias: 'widget.${ALIAS}',
+
+    requires: [
+        'Ehm.${PATH}.${NAME}ViewController',
+        'Ehm.${PATH}.${NAME}ViewModel'
+    ],
+
+    viewModel: {
+        type: '${ALIAS}'
+    },
+
+    controller: '${ALIAS}',
+
+    height: 720,
+    width: 1080,
+    layout: 'border',
+    header: false,
+
+    items: [
+
+    ]
+})
