@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ExtJSTool">
+    <output-path>$PROJECT_DIR$/out/artifacts/ExtJSTool</output-path>
+    <root id="archive" name="ExtJSTool.jar" />
+  </artifact>
+</component>
