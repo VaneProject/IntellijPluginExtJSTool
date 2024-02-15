@@ -13,9 +13,9 @@ Ext.define('Ehm.${PATH}.${NAME}', {
 
     controller: '${ALIAS}',
 
-    height: 720,
-    width: 1080,
-    layout: 'border',
+    height: ${HEIGHT},
+    width: ${WIDTH},
+    layout: '${DEFAULT_LAYOUT}',
     header: false,
 
     items: [
