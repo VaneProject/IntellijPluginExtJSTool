@@ -19,6 +19,19 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <defaultTemplatePropertiesProvider implementation="org.vane.TemplatePackagePropertyProvider"/>
+        
+        <internalFileTemplate name="Controller"/>
+        <internalFileTemplate name="Main"/>
+        <internalFileTemplate name="ViewModel"/>
+        
+        <applicationService serviceImplementation="org.vane.setting.ExtJSToolSetting"/>
+
+        <applicationConfigurable
+                parentId="language"
+                instance="org.vane.setting.ExtJSToolSettingsConfigurable"
+                id="org.vane.setting.ExtJSToolSettingsConfigurable"
+                nonDefaultProject="true"
+                displayName="ExtJS Tool Setting"/>
     </extensions>
 
     <actions>
