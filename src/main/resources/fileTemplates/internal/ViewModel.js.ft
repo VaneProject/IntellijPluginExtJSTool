@@ -11,7 +11,7 @@ Ext.define('Ehm.${PATH}.${NAME}', {
                     type: 'ajax',
                     url: '',
                     reader: {
-                        type: 'json',
+                        type: '${TYPE}',
                         rootProperty: '',
                         totalProperty: ''
                     },
