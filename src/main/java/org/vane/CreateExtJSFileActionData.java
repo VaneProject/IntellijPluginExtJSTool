@@ -8,11 +8,14 @@ interface CreateExtJSFileActionData {
     // file name
     String FILE_CONTROLLER = "ViewController";
     String FILE_MODEL = "ViewModel";
+
     // properties
     String ALIAS = "ALIAS";
     String DEFAULT_LAYOUT = "DEFAULT_LAYOUT";
     String HEIGHT = "HEIGHT";
     String WIDTH = "WIDTH";
-
+    // model
     String TYPE = "TYPE";
+    // controller
+    String CONTROLLER_NAME = "CONTROLLER_NAME";
 }
