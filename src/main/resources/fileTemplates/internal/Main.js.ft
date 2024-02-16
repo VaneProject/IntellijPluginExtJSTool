@@ -3,7 +3,7 @@ Ext.define('Ehm.${PATH}.${NAME}', {
     alias: 'widget.${ALIAS}',
 
     requires: [
-        'Ehm.${PATH}.${NAME}ViewController',
+        'Ehm.${PATH}.${NAME}${CONTROLLER_NAME}',
         'Ehm.${PATH}.${NAME}ViewModel'
     ],
 
