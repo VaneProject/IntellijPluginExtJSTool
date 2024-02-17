@@ -1,10 +1,10 @@
-Ext.define('Ehm.${PATH}.${NAME}', {
+Ext.define('${PROJECT_NAME}.${PATH}.${NAME}', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.${ALIAS}',
 
     requires: [
-        'Ehm.${PATH}.${NAME}${CONTROLLER_NAME}',
-        'Ehm.${PATH}.${NAME}ViewModel'
+        '${PROJECT_NAME}.${PATH}.${NAME}${CONTROLLER_NAME}',
+        '${PROJECT_NAME}.${PATH}.${NAME}ViewModel'
     ],
 
     viewModel: {

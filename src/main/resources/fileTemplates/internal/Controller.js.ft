@@ -1,4 +1,4 @@
-Ext.define('Ehm.${PATH}.${NAME}', {
+Ext.define('${PROJECT_NAME}.${PATH}.${NAME}', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.${ALIAS}'
 })
