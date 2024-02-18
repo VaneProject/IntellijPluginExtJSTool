@@ -3,7 +3,7 @@
     <name>ExtJSTool</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="ToramPersesTitan@gmail.com" url="https://vaneproject.github.io/">Project Vane</vendor>
+    <vendor email="ToramPersesTitan@gmail.com" url="https://vaneproject.github.io/">PersesTitan</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.

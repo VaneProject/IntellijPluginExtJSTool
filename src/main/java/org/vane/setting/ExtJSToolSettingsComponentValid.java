@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 interface ExtJSToolSettingsComponentValid {
-    List<JBTextField> validList = new ArrayList<>();
+    List<JComponent> validList = new ArrayList<>();
 
     void resetData(ExtJSToolSetting setting);
     void applyData(ExtJSToolSetting setting);
@@ -33,7 +33,7 @@ interface ExtJSToolSettingsComponentValid {
     default void setValidBlank(Disposable disposable, JBTextField textField) {
         String message = "Please enter a text";
         new ComponentValidator(disposable).withValidator(() -> {
-            if (StringUtil.isEmptyOrSpaces(textField.getText()))
+            if (textField.isEnabled() && StringUtil.isEmptyOrSpaces(textField.getText()))
                 return new ValidationInfo(message, textField);
             return null;
         }).installOn(textField);
@@ -43,6 +43,8 @@ interface ExtJSToolSettingsComponentValid {
     default void setValidNumber(Disposable disposable, JBTextField textField) {
         String message = "Please enter a number";
         new ComponentValidator(disposable).withValidator(() -> {
+            if (!textField.isEnabled())
+                return null;
             String text = textField.getText();
             if (StringUtil.isEmptyOrSpaces(text))
                 return new ValidationInfo(message, textField);

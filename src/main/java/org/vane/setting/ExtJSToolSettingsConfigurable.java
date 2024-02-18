@@ -7,7 +7,7 @@ import com.intellij.openapi.util.NlsContexts;
 import javax.swing.*;
 import java.util.Objects;
 
-public class ExtJSToolSettingsConfigurable implements Configurable {
+public final class ExtJSToolSettingsConfigurable implements Configurable {
     private static final Disposable EMPTY_DISPOSABLE = () -> {};
     private ExtJSToolSettingsComponent component;
 
@@ -26,8 +26,13 @@ public class ExtJSToolSettingsConfigurable implements Configurable {
         ExtJSToolSetting setting = ExtJSToolSetting.getInstance();
         if (component.isNotValid())
             return false;
+        boolean modified = component.isAppJsonPathCheck() != setting.appJsonPathCheck;
+        if (component.isAppJsonPathCheck())
+            modified |= !component.getAppJsonPath().equals(setting.appJsonPath);
+        else
+            modified |= !component.getProjectName().equals(setting.projectName);
         // view
-        boolean modified = !component.getDefaultLayout().equals(setting.defaultLayout);
+        modified |= !component.getDefaultLayout().equals(setting.defaultLayout);
         modified |= !Objects.equals(component.getHeight(), setting.height);
         modified |= !Objects.equals(component.getWidth(), setting.width);
         // model

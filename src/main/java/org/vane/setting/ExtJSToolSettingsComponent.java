@@ -21,6 +21,7 @@ import java.util.Optional;
 public final class ExtJSToolSettingsComponent implements ExtJSToolSettingsComponentValid {
     private final JLabel projectNameLabel = new JBLabel("Project name: ");
     private final JLabel appJsonPathLabel = new JBLabel("File path app.json: ");
+
     private final JBTextField projectName = new JBTextField();
     private final JBCheckBox appJsonPathCheck = new JBCheckBox("Use app.json option: ");
     private final TextFieldWithBrowseButton appJsonPath = new TextFieldWithBrowseButton();
@@ -39,8 +40,7 @@ public final class ExtJSToolSettingsComponent implements ExtJSToolSettingsCompon
             String text = appJsonPath.getText();
             if (StringUtil.isEmptyOrSpaces(text))
                 return new ValidationInfo("Please enter a text", appJsonPath);
-            File file = new File(text);
-            if (!file.isFile())
+            if (!new File(text).isFile())
                 return new ValidationInfo("Do not find file", appJsonPath);
             return null;
         }).installOn(appJsonPath);
@@ -50,16 +50,11 @@ public final class ExtJSToolSettingsComponent implements ExtJSToolSettingsCompon
                 ComponentValidator.getInstance(appJsonPath).ifPresent(ComponentValidator::revalidate);
             }
         });
+
         appJsonPath.addBrowseFolderListener("Choose File", null, null,
                 new FileChooserDescriptor(true, false, false, false, false, false)
         );
-        appJsonPathCheck.addChangeListener(e -> {
-            boolean isCheck = ((AbstractButton) e.getSource()).getModel().isSelected();
-            projectName.setEnabled(!isCheck);
-            projectNameLabel.setEnabled(!isCheck);
-            appJsonPath.setEnabled(isCheck);
-            appJsonPathLabel.setEnabled(isCheck);
-        });
+        appJsonPathCheck.addChangeListener(e -> setAppJsonInit(((AbstractButton) e.getSource()).getModel().isSelected()));
 
         view = new CreateView(disposable);
         model = new CreateModel(disposable);
@@ -83,6 +78,7 @@ public final class ExtJSToolSettingsComponent implements ExtJSToolSettingsCompon
         view.resetData(setting);
         model.resetData(setting);
         controller.resetData(setting);
+        setAppJsonInit(setting.appJsonPathCheck);
     }
 
     public void applyData(ExtJSToolSetting setting) {
@@ -102,6 +98,13 @@ public final class ExtJSToolSettingsComponent implements ExtJSToolSettingsCompon
                 return true;
         }
         return false;
+    }
+
+    private void setAppJsonInit(boolean isCheck) {
+        projectName.setEnabled(!isCheck);
+        projectNameLabel.setEnabled(!isCheck);
+        appJsonPath.setEnabled(isCheck);
+        appJsonPathLabel.setEnabled(isCheck);
     }
 
     // property
