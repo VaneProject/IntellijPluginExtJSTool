@@ -74,36 +74,4 @@ public class CreateExtJSFileAction extends CreateFileFromTemplateAction implemen
             default -> super.createFileFromTemplate(name, template, dir);
         };
     }
-
-    private Properties getProperties(Project project, String name) {
-        Properties properties = FileTemplateManager.getInstance(project).getDefaultProperties();
-        properties.setProperty(ALIAS, toAlias(name));
-        // setting value
-        ExtJSToolSetting setting = ExtJSToolSetting.getInstance();
-        properties.setProperty(DEFAULT_LAYOUT, setting.defaultLayout);
-        properties.setProperty(HEIGHT, setting.height);
-        properties.setProperty(WIDTH, setting.width);
-        // model
-        properties.setProperty(TYPE, setting.type);
-        // controller
-        properties.setProperty(CONTROLLER_NAME, setting.controllerName);
-        return properties;
-    }
-
-    private String toAlias(String name) {
-        StringBuilder builder = new StringBuilder();
-        char[] words = name.toCharArray();
-        char word = words[0];
-        if ('A' <= word && word <= 'Z')
-            builder.append((char) (word + 32));
-        else
-            builder.append(word);
-        for (int i = 1; i < words.length; i++) {
-            word = words[i];
-            if ('A' <= word && word <= 'Z')
-                builder.append("_").append((char) (word + 32));
-            else builder.append(word);
-        }
-        return builder.toString();
-    }
 }
