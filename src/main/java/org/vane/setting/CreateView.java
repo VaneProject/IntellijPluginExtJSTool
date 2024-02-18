@@ -4,9 +4,13 @@ import com.intellij.openapi.Disposable;
 import com.intellij.ui.IdeBorderFactory;
 import com.intellij.ui.components.JBLabel;
 import com.intellij.ui.components.JBTextField;
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.util.ui.FormBuilder;
+import com.intellij.util.ui.JBUI;
 
 import javax.swing.*;
+import java.awt.*;
 
 class CreateView implements ExtJSToolSettingsComponentValid {
     private final JBTextField defaultLayout = new JBTextField();
@@ -18,10 +22,26 @@ class CreateView implements ExtJSToolSettingsComponentValid {
         setValidBlank(disposable, defaultLayout);
         setValidNumber(disposable, widthLayout);
         setValidNumber(disposable, heightLayout);
+
+        // size panel
+        JPanel sizePanel = new JPanel(new GridLayoutManager(1, 4, JBUI.emptyInsets(), -1, -1)) {{
+            add(new Label("Width: "), new GridConstraints(0, 0, 1, 1,
+                    GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED,
+                    GridConstraints.SIZEPOLICY_FIXED, null, null, null));
+            add(widthLayout, new GridConstraints(0, 1, 1, 1,
+                    GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW,
+                    GridConstraints.SIZEPOLICY_FIXED, null, null, null));
+            add(new JLabel("Height:"), new GridConstraints(0, 2, 1, 1,
+                    GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED,
+                    GridConstraints.SIZEPOLICY_FIXED, null, null, null));
+            add(heightLayout, new GridConstraints(0, 3, 1, 1,
+                    GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW,
+                    GridConstraints.SIZEPOLICY_FIXED, null, null, null));
+        }};
+
         panel = FormBuilder.createFormBuilder()
                 .addLabeledComponent(new JBLabel("Default layout: "), defaultLayout, 1, false)
-                .addLabeledComponent(new JBLabel("Height: "), heightLayout, 1, false)
-                .addLabeledComponent(new JBLabel("Width: "), widthLayout,1, false)
+                .addComponent(sizePanel, 1)
                 .getPanel();
         panel.setBorder(IdeBorderFactory.createTitledBorder("View"));
     }
